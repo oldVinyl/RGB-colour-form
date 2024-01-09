@@ -1,0 +1,143 @@
+<!--rgb button-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>rgb page</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    body{
+      background-color: bisque;
+      font-family: 'Pacifico', cursive;
+      font-size: 30px;
+    }
+    .final-product-window{
+      width: 200px;
+      height: 200px;
+      border-radius: 100px;
+      margin-right: 25px;
+    }
+    .rgb-page{
+      display: grid;
+      text-align: center;
+      justify-content: center;
+    }
+    .rgb-field{
+      display: grid;
+    }
+    input{
+      margin-top: 35px;
+      padding: 15px;
+      text-align: center;
+      width: 350px;
+    }
+    .colour-name{
+      font-size: 25px;
+      margin: 0;
+    }
+    .split-screen-div{
+      display: flex;
+      flex-direction: row;
+    }
+    .back-img{
+      position: fixed;
+      top: 30px;
+      left: 30px;
+      right: 0;
+      bottom: 0;
+      height: 60px;
+      width: 60px;
+      transition: opacity 0.15s;
+    }
+    .back-img:hover{
+      opacity: 0.75;
+    }
+    .back-img:active{
+      opacity: 0.6;
+    }
+    .js-input-field{
+      border-radius: 30px;
+      border-color: brown;
+    }
+  </style>
+  
+</head>
+
+<body>
+
+    <a href="optionsPage.html">
+      <img class="back-img" src="/images/back-arrow-svgrepo-com.svg">
+    </a>
+
+  <div class="rgb-page">
+    <div class="split-screen-div">
+      <button class="final-product-window" style="border: none;  background-color: rgb(222, 188, 147);"></button>
+      <p>Enter Any Number<br><span style="font-size: 20px; color: grey;">(from 0 to 225)</span></p>
+    </div>
+    <div>
+      <div class="rgb-field">
+        <div>
+          <input class="js-input-field js-red-input" type="number" placeholder="222">
+          <p class="colour-name">Red</p>
+        </div>
+        <div>
+          <input class="js-input-field js-blue-input" type="number" placeholder="188">
+          <p class="colour-name">Blue</p>
+        </div>
+        <div>
+          <input class="js-input-field js-green-input" type="number" placeholder="147">
+          <p class="colour-name">Green</p>
+        </div>
+      </div>
+    </div>
+    <p>And Press 'Enter'!!</p>
+  </div>
+  
+  <script>
+
+    let redValue = 0;
+    let blueValue = 0;
+    let greenValue = 0;
+
+    function saveValues () {
+      redValue = document.querySelector('.js-red-input').value;
+      blueValue = document.querySelector('.js-blue-input').value;
+      greenValue = document.querySelector('.js-green-input').value;
+
+      console.log('Red Value = ' + redValue);
+      console.log('Blue Value = ' + blueValue);
+      console.log('Green Value = ' + greenValue);
+
+      return redValue;
+      return blueValue;
+      return greenValue;
+    };
+
+
+    document.querySelectorAll('input')
+      .forEach((e) => {e.addEventListener('keydown', (e) => {
+      if (e.key === "Enter"){
+          saveValues();
+          colourButton();
+        };
+      })});
+          
+    function colourButton() {
+      document.querySelector('.final-product-window')
+        .innerHTML = `<button class="final-product-window" style= "background-color: rgb(${redValue}, ${blueValue}, ${greenValue}); border: none;"></button>`
+    }
+
+  
+
+  </script>
+</body>
+</html>
